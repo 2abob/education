@@ -7,17 +7,14 @@ var con = mysql.createConnection({
     database: "u4u28lo7cd71c98q"
 });
 
-async function test() {
+async function login(login, password) {
     const test = new Promise((resolve, reject) => {
         con.connect()
-        con.query("SELECT * FROM test", function (err, result, fields) {
-            // resolve(JSON.stringify(result[0]));
-            // resolve(result[0])
+        con.query("SELECT * FROM personne WHERE login = '"+login+"' AND password = '"+password+"'", function (err, result, fields) {
             resolve(result)
-            // reject(err)
         });
     })
     return test
 }
 
-exports.test = test
+exports.login = login

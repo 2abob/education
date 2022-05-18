@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-var test = require('./test')
+var connectionDB = require('./connectionDB')
 
 // Error handling
 const sendError = (err, res) => {
@@ -18,8 +18,8 @@ let response = {
 };
 
 // Get users
-router.get('/test', (req, res) => {
-    test.test()
+router.get('/login', (req, res) => {
+    connectionDB.login(req.query.login, req.query.password)
     .then((result) => {
         response.data = result
         res.json(response)
